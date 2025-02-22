@@ -1,0 +1,27 @@
+while (true) {
+    console.log("\nIngrese los datos para la cotización del seguro o escriba 'Salir' para terminar.");
+    let nombre = prompt("Nombre del asegurado: ");
+    if (nombre.toLowerCase() === "salir") {
+        break;
+    }
+    
+    try {
+        let edad = parseInt(prompt("Edad del asegurado: "));
+        let salario = parseFloat(prompt("Salario mensual del asegurado: "));
+        let numPropiedades = parseInt(prompt("Número de propiedades: "));
+        
+        let cotizacionBase = 1000; // Monto base de la cotización
+        let recargoPropiedades = (35 / 100) * cotizacionBase * numPropiedades;
+        let recargoSalario = (5 / 100) * salario;
+        
+        let cotizacionTotal = cotizacionBase + recargoPropiedades + recargoSalario;
+        
+        console.log(`\nCotización para ${nombre}:`);
+        console.log(`Monto base: $${cotizacionBase.toFixed(2)}`);
+        console.log(`Recargo por propiedades (${numPropiedades}): $${recargoPropiedades.toFixed(2)}`);
+        console.log(`Recargo por salario ($${salario.toFixed(2)}): $${recargoSalario.toFixed(2)}`);
+        console.log(`Monto total de la cotización: $${cotizacionTotal.toFixed(2)}\n`);
+    } catch (error) {
+        console.log("Error: Ingrese valores numéricos válidos para la edad, salario y número de propiedades.");
+    }
+}
